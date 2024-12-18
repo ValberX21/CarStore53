@@ -69,8 +69,6 @@ The **Import Manager System** is a web application designed to manage the import
 - `/Controllers`: Contains the controllers handling API endpoints.
 - `/Views`: Razor Pages for the frontend.
 - `/Models`: Contains the application’s data models.
-- `/DatabaseScripts`: SQL scripts for database setup.
-- `/Utils`: Helper classes and utilities, including JWT token generation and PDF creation.
 
 ## Development Notes
 - **Database Interaction**:
@@ -82,9 +80,7 @@ The **Import Manager System** is a web application designed to manage the import
   - JWT tokens are implemented to secure API endpoints.
 
 ## Future Improvements
-- Replace raw SQL queries with a more robust ORM like Entity Framework.
 - Add unit tests for key features.
-- Enhance the UI with modern frameworks like React or Angular.
 - Implement logging for better monitoring and debugging.
 
 ## Contributing
