@@ -1,0 +1,76 @@
+﻿@model CarStore53.Models.CarModel
+
+@{
+    ViewData["Title"] = "Register a New Car";
+}
+
+
+<div class="p-4 border rounded-3" style="border: 2px solid black; background-color: #f9f9f9; max-width: 1000px; margin: 0 auto;">
+    <form asp-action="AddCar" asp-controller="Register" method="post" class="needs-validation row g-3 mt-4" novalidate>
+
+        <div style="visibility:hidden" type="hidden">
+            <label asp-for="Id" type="hidden"></label>
+            <input asp-for="Id" type="hidden" />
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="SelectedMark" class="form-label">Mark</label>
+            <select asp-for="SelectedMark" class="form-control" asp-items="Model.Marks">
+                <option value="">Select a Mark</option>
+            </select>
+            <span asp-validation-for="SelectedMark" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="Model" class="form-label"></label>
+            <input asp-for="Model" class="form-control" placeholder="Model" />
+            <span asp-validation-for="Model" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-2">
+            <label asp-for="Year" class="form-label"></label>
+            <input asp-for="Year" class="form-control" type="number" placeholder="Year" min="1900" max="2024" />
+            <span asp-validation-for="Year" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="VIN" class="form-label"></label>
+            <input asp-for="VIN" class="form-control" placeholder="Vehicle Identification Number (VIN)" maxlength="17"/>
+            <span asp-validation-for="VIN" class="text-danger"></span>
+        </div>
+
+        <div class="col-12 mt-3 text-center">
+            <button type="submit" class="btn btn-primary btn-lg w-100">Register</button>
+        </div>
+
+    </form>
+
+    <div class="container mt-5">
+        <table class="table table-striped table-bordered mt-4">
+            <thead class="table-dark">
+                <tr>
+                    <th>Mark</th>
+                    <th>Model</th>
+                    <th>Year</th>
+                    <th>VIN</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var car in Model.CarList)
+                {
+                    <tr>
+                        <td>@car.Mark</td>
+                        <td>@car.Model</td>
+                        <td>@car.Year</td>
+                        <td>@car.VIN</td>
+                        <td>
+                            <a asp-action="Edit" asp-controller="Register" asp-route-id="@car.Id" class="btn btn-warning btn-sm me-2">Update</a>
+                            <a asp-action="Delete" asp-controller="Register" asp-route-id="@car.Id" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

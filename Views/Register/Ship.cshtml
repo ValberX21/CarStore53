@@ -1,0 +1,75 @@
+﻿@model CarStore53.Models.ShipModel
+
+@{
+    ViewData["Title"] = "Register Ship";
+}
+
+<h2>Register Ship</h2>
+<form asp-action="AddShip" asp-controller="Register" method="post" class="needs-validation row g-3 mt-4" novalidate>
+
+    <div style="visibility:hidden" type="hidden">
+        <label asp-for="Id" type="hidden"></label>
+        <input asp-for="Id" type="hidden" />
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RegistrationNumber" class="control-label"></label>
+        <input asp-for="RegistrationNumber" class="form-control" />
+        <span asp-validation-for="RegistrationNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CaptainName" class="control-label"></label>
+        <input asp-for="CaptainName" class="form-control" />
+        <span asp-validation-for="CaptainName" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Registration Number</th>
+            <th>Captain Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.ShipList != null && Model.ShipList.Any())
+        {
+            foreach (var ship in Model.ShipList)
+            {
+                <tr>
+                    <td>@ship.Id</td>
+                    <td>@ship.Name</td>
+                    <td>@ship.RegistrationNumber</td>
+                    <td>@ship.CaptainName</td>
+                    <td>
+                        <a asp-action="EditShip" asp-controller="Register" asp-route-id="@ship.Id" class="btn btn-warning btn-sm me-2">Update</a>
+                        <a asp-action="DeleteShip" asp-controller="Register" asp-route-id="@ship.Id" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4">No ships registered yet.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

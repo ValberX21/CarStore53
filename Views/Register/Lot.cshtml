@@ -1,0 +1,77 @@
+﻿@model CarStore53.Models.LotModel
+
+@{
+    ViewData["Title"] = "Register a New Lot";
+}
+
+
+<div class="p-4 border rounded-3" style="border: 2px solid black; background-color: #f9f9f9; max-width: 1000px; margin: 0 auto;">
+    <form asp-action="GenerateLot" asp-controller="Register" method="post" class="needs-validation row g-3 mt-4" novalidate>
+
+        <div style="visibility:hidden" type="hidden">
+            <label asp-for="Id" type="hidden"></label>
+            <input asp-for="Id" type="hidden" />
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="LotNumber" class="form-label"></label>
+            <input asp-for="LotNumber" class="form-control" placeholder="LotNumber" />
+        </div>
+
+        <div class="col-md-2">
+            <label asp-for="ImportDate" class="form-label"></label>
+            <input asp-for="ImportDate" class="form-control" type="date" />
+            <span asp-validation-for="ImportDate" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="ShipId" class="form-label">Select a Ship</label>
+            <select asp-for="ShipId" class="form-control" asp-items="Model.Ships">
+                <option value="">Select a Ship</option>
+            </select>
+            <span asp-validation-for="ShipId" class="text-danger"></span>
+        </div>
+
+        
+        <div class="col-md-6">
+            <label asp-for="SelecteCar" class="form-label"></label>
+            <input asp-for="SelecteCar" class="form-control" placeholder="SelecteCar" />
+            <button type="submit" asp-action="AddCarInLot"  class="btn btn-secondary mt-2">Type a Car</button>
+        </div>
+
+        <div class="container mt-5">
+            <table class="table table-striped table-bordered mt-4">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Mark</th>
+                        <th>Model</th>
+                        <th>Year</th>
+                        <th>VIN</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var car in Model.CarsLot)
+                    {
+                        <tr>
+                            <td>@car.Mark</td>
+                            <td>@car.Model</td>
+                            <td>@car.Year</td>
+                            <td>@car.VIN</td>
+                            <td>
+                                <a asp-action="DeleteCarLot" asp-controller="Register" asp-route-id="@car.Id" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+            <div class="col-12 mt-3 text-center">
+                <button type="submit" class="btn btn-primary btn-lg w-100">Create log</button>
+            </div>
+      
+
+
+    </form> 
+</div>
