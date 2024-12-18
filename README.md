@@ -93,12 +93,4 @@ Contributions are welcome! Please follow the steps below:
 2. Create a new branch for your feature or bug fix.
 3. Commit your changes and create a pull request.
 
-## License
-This project is licensed under the [MIT License](LICENSE).
-
-## Contact
-For questions or support, please contact:
-- **Name**: [Your Name]
-- **Email**: [Your Email]
-- **GitHub**: [Your GitHub Profile]
 
